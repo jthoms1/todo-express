@@ -17,8 +17,8 @@ exports.db = {
   user     : "",
   password : "",
   query    : {
-	  debug : true,
-	  pool  : true
+    debug : true,
+    pool  : true
   }
 };
 
