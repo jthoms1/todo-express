@@ -16,6 +16,7 @@
     "moment": "~2.1.0",
     "soda": "~0.2.5",
     "sequelize": "~2.0.0-beta.0",
-    "less-middleware": "~0.1.12"
+    "less-middleware": "~0.1.12",
+    "pg": "~2.6.2"
   }
 }

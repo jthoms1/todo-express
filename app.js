@@ -3,13 +3,14 @@
 /**
  * Module dependencies.
  */
-var config = require('./config'),
-  express  = require('express'),
-  app      = express(),
+var config       = require('./config'),
+  express        = require('express'),
   lessMiddleware = require('less-middleware'),
-  server   = require('http').createServer(app),
-  sequelize = require('sequelize'),
-  path     = require('path');
+  http           = require('http'),
+  path           = require('path'),
+  db             = require('./models');
+
+var app = express();
 
 app.configure(function () {
   app.set('port', config.port);
@@ -21,14 +22,9 @@ app.configure(function () {
   app.use(express.methodOverride());
   app.use(express.cookieParser('todo-express-cookie'));
   app.use(express.cookieSession());
-  app.use(orm.express(config.db, {
-    define: function (db, models) {
-      require('./models')(db, models);
-    }
-  }));
   app.use(app.router);
   app.use(lessMiddleware({
-    src: __dirname + '/public',
+    src: path.join(__dirname, config.public_dir),
     compress: true
   }));
   app.use(express.static(path.join(__dirname, config.public_dir)));
@@ -39,12 +35,21 @@ app.configure('development', function () {
 });
 
 // Routes for the app
-require('./routes')(app);
+app.get('/', function (req, res) {
+  res.end('hello');
+});
 
-//Start the loop
-server.listen(app.get('port'), function () {
-  console.log("Express server listening on port " + app.get('port'));
-  console.log(config.url);
+db.sequelize.sync().complete(function(err) {
+  if (err) {
+    throw err;
+  } else {
+
+    //Start the loop
+    http.createServer(app).listen(app.get('port'), function () {
+      console.log("Express server listening on port " + app.get('port'));
+      console.log(config.url);
+    });
+  }
 });
 
 process.on('uncaughtException', function (err) {
