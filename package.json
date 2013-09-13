@@ -5,11 +5,17 @@
     "name": "Josh Thomas",
     "email": "jthoms1@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jthoms1/todo-express.git"
+  },
   "dependencies": {
     "express": "~3.2.6",
     "ejs": "~0.8.4",
-    "orm": "~2.0.15",
     "async": "~0.2.9",
-    "moment": "~2.1.0"
+    "moment": "~2.1.0",
+    "soda": "~0.2.5",
+    "sequelize": "~2.0.0-beta.0",
+    "less-middleware": "~0.1.12"
   }
 }

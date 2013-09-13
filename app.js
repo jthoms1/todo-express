@@ -6,8 +6,9 @@
 var config = require('./config'),
   express  = require('express'),
   app      = express(),
+  lessMiddleware = require('less-middleware'),
   server   = require('http').createServer(app),
-  orm      = require('orm'),
+  sequelize = require('sequelize'),
   path     = require('path');
 
 app.configure(function () {
@@ -26,6 +27,10 @@ app.configure(function () {
     }
   }));
   app.use(app.router);
+  app.use(lessMiddleware({
+    src: __dirname + '/public',
+    compress: true
+  }));
   app.use(express.static(path.join(__dirname, config.public_dir)));
 });
 
