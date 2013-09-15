@@ -19,11 +19,6 @@ if (!global.hasOwnProperty('db')) {
 
   global.db.User.hasMany(global.db.TodoList, {as: 'Lists'});
   global.db.TodoList.hasMany(global.db.Todo, {as: 'Todos'});
-
-  /*
-    Associations can be defined here. E.g. like this:
-    global.db.User.hasMany(global.db.SomethingElse)
-  */
 }
 
 module.exports = global.db;

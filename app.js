@@ -10,6 +10,8 @@ var config       = require('./config'),
   path           = require('path'),
   db             = require('./models');
 
+require('express-resource');
+
 var app = express();
 
 app.configure(function () {
@@ -17,22 +19,26 @@ app.configure(function () {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'html');
   app.engine('html', require('ejs').__express);
-  app.use(express.compress());
   app.use(express.bodyParser());
+  app.use(express.compress());
   app.use(express.methodOverride());
   app.use(express.cookieParser('todo-express-cookie'));
   app.use(express.cookieSession());
-  app.use(app.router);
   app.use(lessMiddleware({
     src: path.join(__dirname, config.public_dir),
     compress: true
   }));
+  app.use(app.router);
   app.use(express.static(path.join(__dirname, config.public_dir)));
 });
 
 app.configure('development', function () {
   app.use(express.errorHandler());
 });
+
+app.resource('users', require('./routes/user'));
+app.resource('todos', require('./routes/todo'));
+app.resource('todo-lists', require('./routes/todo-list'));
 
 // Routes for the app
 app.get('/', function (req, res) {

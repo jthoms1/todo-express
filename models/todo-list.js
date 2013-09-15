@@ -1,6 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define("TodoList", {
-    name       : DataTypes.STRING,
-    status     : DataTypes.ENUM('active', 'inactive', 'deleted')
+    name : {
+      type: DataTypes.STRING,
+      validate: {
+        notNull: true
+      }
+    },
+    status : {
+      type: DataTypes.ENUM,
+      values: ['active', 'inactive', 'deleted'],
+      defaultValue: 'active',
+      validate: {
+        isIn: [['active', 'inactive', 'deleted']]
+      }
+    }
   });
 };

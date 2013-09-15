@@ -17,6 +17,8 @@
     "soda": "~0.2.5",
     "sequelize": "~2.0.0-beta.0",
     "less-middleware": "~0.1.12",
-    "pg": "~2.6.2"
+    "pg": "~2.6.2",
+    "express-resource": "~1.0.0",
+    "bcrypt": "~0.7.7"
   }
 }
