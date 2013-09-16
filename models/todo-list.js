@@ -6,6 +6,12 @@ module.exports = function(sequelize, DataTypes) {
         notNull: true
       }
     },
+    UserId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: true
+      }
+    },
     status : {
       type: DataTypes.ENUM,
       values: ['active', 'inactive', 'deleted'],

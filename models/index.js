@@ -17,6 +17,21 @@ if (!global.hasOwnProperty('db')) {
     TodoList:  sequelize.import(__dirname + '/todo-list')
   };
 
+  /*
+   * Assumes that obj1 is original source and
+   * we really just want the differences from obj2
+   */
+  global.db.objectDifference = function (origObj, newObj) {
+    var diffObj = {};
+
+    Object.keys(origObj).forEach(function (key) {
+      if (origObj[key] !== newObj[key]) {
+        diffObj[key] = newObj[key];
+      }
+    });
+    return diffObj;
+  };
+
   global.db.User.hasMany(global.db.TodoList, {as: 'Lists'});
   global.db.TodoList.hasMany(global.db.Todo, {as: 'Todos'});
 }
