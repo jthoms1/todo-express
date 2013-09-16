@@ -8,9 +8,8 @@ var config       = require('./config'),
   lessMiddleware = require('less-middleware'),
   http           = require('http'),
   path           = require('path'),
-  db             = require('./models');
-
-require('express-resource');
+  db             = require('./lib/models'),
+  api            = require('./lib/api');
 
 var app = express();
 
@@ -36,14 +35,12 @@ app.configure('development', function () {
   app.use(express.errorHandler());
 });
 
-app.resource('users', require('./routes/user'));
-app.resource('todos', require('./routes/todo'));
-app.resource('todo-lists', require('./routes/todo-list'));
-
 // Routes for the app
 app.get('/', function (req, res) {
   res.end('hello');
 });
+
+app.use('/api', api);
 
 db.sequelize.sync().complete(function(err) {
   if (err) {
