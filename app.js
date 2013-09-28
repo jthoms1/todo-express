@@ -8,8 +8,7 @@ var config       = require('./config'),
   lessMiddleware = require('less-middleware'),
   http           = require('http'),
   path           = require('path'),
-  db             = require('./lib/models'),
-  api            = require('./lib/api');
+  db             = require('./db');
 
 var app = express();
 
@@ -40,7 +39,12 @@ app.get('/', function (req, res) {
   res.end('hello');
 });
 
-app.use('/api', api);
+app.use('/users', require('./lib/users'));
+app.use('/todos', require('./lib/todos'));
+app.use('/api', require('./lib/api'));
+
+global.db.User.hasMany(global.db.TodoList, {as: 'Lists'});
+global.db.TodoList.hasMany(global.db.Todo, {as: 'Todos'});
 
 db.sequelize.sync().complete(function(err) {
   if (err) {

@@ -1,4 +1,4 @@
-var dbConfig = require('../../config').db;
+var dbConfig = require('./config').db;
 
 if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize'),
@@ -24,14 +24,9 @@ if (!global.hasOwnProperty('db')) {
       }
     });
 
-  global.db = {
-    Sequelize: Sequelize,
-    sequelize: sequelize,
-    User:      sequelize.import(__dirname + '/user'),
-    Todo:      sequelize.import(__dirname + '/todo'),
-    TodoList:  sequelize.import(__dirname + '/todo-list')
-  };
-
+  global.db = {};
+  global.db.Sequelize = Sequelize;
+  global.db.sequelize = sequelize;
   /*
    * Assumes that obj1 is original source and
    * we really just want the differences from obj2
@@ -46,9 +41,6 @@ if (!global.hasOwnProperty('db')) {
     });
     return diffObj;
   };
-
-  global.db.User.hasMany(global.db.TodoList, {as: 'Lists'});
-  global.db.TodoList.hasMany(global.db.Todo, {as: 'Todos'});
 }
 
 module.exports = global.db;
