@@ -5,8 +5,6 @@
  */
 var config       = require('./config'),
   express        = require('express'),
-  lessMiddleware = require('less-middleware'),
-  consolidate    = require('consolidate'),
   http           = require('http'),
   path           = require('path'),
   db             = require('./db');
@@ -16,17 +14,13 @@ var app = express();
 app.configure(function () {
   app.set('port', config.port);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'html');
-  app.engine('html', require('ejs').__express);
+  app.set('view engine', 'jade');
+  app.engine('jade', require('jade').__express);
   app.use(express.bodyParser());
   app.use(express.compress());
   app.use(express.methodOverride());
   app.use(express.cookieParser('todo-express-cookie'));
   app.use(express.cookieSession());
-  app.use(lessMiddleware({
-    src: path.join(__dirname, config.public_dir),
-    compress: true
-  }));
   app.use(app.router);
   app.use(express.static(path.join(__dirname, config.public_dir)));
 });
@@ -38,7 +32,6 @@ app.configure('development', function () {
 // Routes for the app
 app.get('/', function (req, res) {
   res.render('index', {
-    title: 'Home',
     main: 'hello world'
   });
 });

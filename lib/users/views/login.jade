@@ -1,0 +1,19 @@
+extends ../../../views/layout
+
+block body
+  form.form-horizontal.login-form(action="/users/login", method="post")
+    fieldset
+      legend Login
+      div.control-group
+        label.control-label(for="username") Enter your username:
+        div.controls
+          input(type="text", id="username", name="username", size="25", tabindex="1", value="")
+      div.control-group
+        label.control-label(for="password") Enter your password:
+        div.controls
+          input(type="password", id="password", name="password", size="25", tabindex="2")
+      div.control-group
+        div.controls
+          input.btn(type="submit", name="signIn", value="Log in", tabindex="3")
+      div.help-block
+        a(href="/forgot-username") Forgot your username?

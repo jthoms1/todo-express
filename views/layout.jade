@@ -1,0 +1,13 @@
+doctype 5
+html(lang="en").no-js
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      (function(){
+        var htmlElement = document.documentElement;
+        htmlElement.className = htmlElement.className.replace(/\bno-js\b/, '');
+      })();
+    block head
+  body
+    block body
+  script(type='text/javascript', src='/js/main.js')
