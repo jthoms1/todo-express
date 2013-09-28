@@ -18,6 +18,7 @@
     "less-middleware": "~0.1.12",
     "pg": "~2.6.2",
     "express-resource": "~1.0.0",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "consolidate": "~0.9.1"
   }
 }

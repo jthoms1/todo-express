@@ -6,6 +6,7 @@
 var config       = require('./config'),
   express        = require('express'),
   lessMiddleware = require('less-middleware'),
+  consolidate    = require('consolidate'),
   http           = require('http'),
   path           = require('path'),
   db             = require('./db');
@@ -36,7 +37,10 @@ app.configure('development', function () {
 
 // Routes for the app
 app.get('/', function (req, res) {
-  res.end('hello');
+  res.render('index', {
+    title: 'Home',
+    main: 'hello world'
+  });
 });
 
 app.use('/users', require('./lib/users'));
