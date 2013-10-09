@@ -5,8 +5,8 @@ var Backbone = require('backbone'),
 "use strict";
 
 // Initialize routing and start Backbone.history()
-var workspace = new Workspace();
+window.workspace = new Workspace();
 Backbone.history.start();
 
 // Initialize the application view
-var appView = new AppView();
+window.appView = new AppView();
