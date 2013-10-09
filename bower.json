@@ -1,0 +1,22 @@
+{
+  "name": "great-big-pictures",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.2",
+    "bootstrap": "~3.0.0",
+    "layoutmanager": "~0.9.3",
+    "backbone.routefilter": "git://github.com/boazsender/backbone.routefilter.git",
+    "backbone.subroute": "~0.4.0",
+    "backbone.stickit": "~0.6.3",
+    "underscore.string": "~2.3.3",
+    "moment": "~2.2.1",
+    "jade": "~0.35.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

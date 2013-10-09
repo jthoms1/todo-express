@@ -18,7 +18,9 @@
     "pg": "~2.6.2",
     "express-resource": "~1.0.0",
     "bcrypt": "~0.7.7",
-    "jade": "~0.35.0"
+    "jade": "~0.35.0",
+    "underscore": "~1.5.2",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -27,6 +29,8 @@
     "grunt-contrib-jade": "~0.8.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "precommit-hook": "~0.3.8"
   }
 }

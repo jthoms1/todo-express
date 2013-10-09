@@ -36,12 +36,12 @@ app.get('/', function (req, res) {
   });
 });
 
+// Setup the sub apps
 app.use('/users', require('./lib/users'));
 app.use('/todos', require('./lib/todos'));
-app.use('/api', require('./lib/api'));
+app.use('/api',   require('./lib/api'));
 
-global.db.User.hasMany(global.db.TodoList, {as: 'Lists'});
-global.db.TodoList.hasMany(global.db.Todo, {as: 'Todos'});
+global.db.models.User.hasMany(global.db.models.TodoList, {as: 'Lists'});
 
 db.sequelize.sync().complete(function(err) {
   if (err) {

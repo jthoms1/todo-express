@@ -25,6 +25,7 @@ if (!global.hasOwnProperty('db')) {
     });
 
   global.db = {};
+  global.db.models = {};
   global.db.Sequelize = Sequelize;
   global.db.sequelize = sequelize;
   /*
