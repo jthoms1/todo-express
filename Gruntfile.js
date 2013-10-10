@@ -54,7 +54,7 @@ module.exports = function (grunt) {
           amd: true
         },
         files: {
-          "stuff.js": ["lib/todos/views/*.jade"]
+          "<%= dir.js_code %>templates.js": ["lib/*/views/*.jade"]
         }
       }
     },

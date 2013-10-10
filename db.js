@@ -28,6 +28,7 @@ if (!global.hasOwnProperty('db')) {
   global.db.models = {};
   global.db.Sequelize = Sequelize;
   global.db.sequelize = sequelize;
+
   /*
    * Assumes that obj1 is original source and
    * we really just want the differences from obj2
